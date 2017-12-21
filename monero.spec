@@ -14,7 +14,8 @@ BuildRequires: gcc-c++
 BuildRequires: graphviz
 BuildRequires: make
 BuildRequires: openssl-devel
-BuildRequires: pkg-config
+BuildRequires: pkgconf
+BuildRequires: pkgconf-pkg-config
 
 %description
 Monero is a p2p crytographic currency.
