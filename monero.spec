@@ -1,6 +1,6 @@
 Name:    monero
 Version: 0.11.1.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Peer to Peer Cryptographic Currency
 Group:   Applications/System
 License: MIT
@@ -46,14 +46,16 @@ utilities.
 # we're building with the expected hardening flags.
 mkdir -p build/release
 pushd build/release
-%cmake -DBUILD_SHARED_LIBS:BOOL=OFF -D STATIC=ON -D ARCH="x86-64" -D BUILD_64=ON -D CMAKE_BUILD_TYPE=release ../..
-popd
+%cmake -DBUILD_SHARED_LIBS:BOOL=OFF -D STATIC=ON -D ARCH="x86-64" -D BUILD_64=ON -D BUILD_TESTS=ON -D CMAKE_BUILD_TYPE=release ../..
 
 # Actually build monerod and everything else.
-make %{?_smp_mflags} release-static
+make %{?_smp_mflags}
+popd
 
 %check
-make %{?_smp_mflags} release-test
+pushd build/release
+make %{?_smp_mflags} test
+popd
 
 %install
 make -C build/release install DESTDIR=%{buildroot}
@@ -111,6 +113,9 @@ rm -rf %{buildroot}
 %dir %attr(0750,monero,monero) %{_localstatedir}/log/monero
 
 %changelog
+* Fri Dec 22 2017 Evan Klitzke <evan@eklitzke.org> - 0.11.1.0-4
+- Fix how the test suite is linked/run.
+
 * Fri Dec 22 2017 Evan Klitzke <evan@eklitzke.org> - 0.11.1.0-3
 - Install to /usr/bin instead of /usr/sbin, use Fedora packaging macros, enable
   debug symbols.
