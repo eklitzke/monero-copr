@@ -1,0 +1,21 @@
+--- utils/systemd/monerod.service-orig	2017-12-21 15:48:20.496498094 -0800
++++ utils/systemd/monerod.service	2017-12-21 15:56:48.519663449 -0800
+@@ -6,12 +6,13 @@
+ User=monero
+ Group=monero
+ WorkingDirectory=~
+-
++ExecStart=/usr/sbin/monerod --config-file /etc/monerod.conf \
++    --detach --pidfile /run/monero/monerod.pid
+ Type=forking
+-PIDFile=/var/run/monerod.pid
+-
+-ExecStart=/usr/bin/monerod --config-file /etc/monerod.conf \
+-    --detach --pidfile /var/run/monerod.pid
++RuntimeDirectory=monero
++PIDFile=/run/monero/monerod.pid
++Restar=on-failure
++PrivateTmp=true
+ 
+ [Install]
+ WantedBy=multi-user.target
