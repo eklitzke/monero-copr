@@ -19,17 +19,18 @@ BuildRequires: pkgconf
 BuildRequires: pkgconf-pkg-config
 
 %description
-Monero is a p2p crytographic currency.
+Monero is a secure, private, and untraceable cryptocurrency.
 
 %package static
-Summary:        Peer to Peer Cryptographic Currency
-Group:          Applications/System
+Summary:       Peer to Peer Cryptographic Currency
+Group:         Applications/System
 BuildRequires: boost-static
 BuildRequires: libstdc++-static
 
 %description static
 
-This package provides a statically linked build of Monero.
+This package provides a statically linked build of monerod and the CLI
+utilities.
 
 # FIXME: this is temporary
 %global debug_package %{nil}
@@ -43,7 +44,7 @@ This package provides a statically linked build of Monero.
 make %{?_smp_mflags} release-static
 
 %check
-#make %{?_smp_mflags} release-test
+make %{?_smp_mflags} release-test
 
 %install
 mkdir -p %{buildroot}%{_sbindir}
@@ -72,10 +73,10 @@ getent passwd monero >/dev/null ||\
 %{_bindir}/systemd-tmpfiles --create
 
 %preun static
-%systemd_preun bitcoind.service
+%systemd_preun monerod.service
 
 %postun static
-%systemd_postun bitcoind.service
+%systemd_postun monerod.service
 
 %clean
 rm -rf %{buildroot}
