@@ -54,7 +54,7 @@ popd
 
 %check
 pushd build/release
-make %{?_smp_mflags} test
+ctest -V %{?_smp_mflags}
 popd
 
 %install
