@@ -1,6 +1,6 @@
 Name:    monero
 Version: 0.11.1.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: Peer to Peer Cryptographic Currency
 Group:   Applications/System
 License: MIT
@@ -114,6 +114,9 @@ rm -rf %{buildroot}
 %dir %attr(0750,monero,monero) %{_localstatedir}/log/monero
 
 %changelog
+* Sun Mar 25 2018 Evan Klitzke <evan@eklitzke.org> - 0.11.1.0-5
+- Fix a small bug in the systemd unit
+
 * Fri Dec 22 2017 Evan Klitzke <evan@eklitzke.org> - 0.11.1.0-4
 - Fix how the test suite is linked/run.
 
