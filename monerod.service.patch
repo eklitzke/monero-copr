@@ -14,7 +14,7 @@
 -    --detach --pidfile /var/run/monerod.pid
 +RuntimeDirectory=monero
 +PIDFile=/run/monero/monerod.pid
-+Restar=on-failure
++Restart=on-failure
 +PrivateTmp=true
  
  [Install]
