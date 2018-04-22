@@ -14,6 +14,7 @@ BuildRequires: cmake
 BuildRequires: cppzmq-devel
 BuildRequires: doxygen
 BuildRequires: gcc-c++
+BuildRequires: git
 BuildRequires: graphviz
 BuildRequires: gtest-devel
 BuildRequires: make
