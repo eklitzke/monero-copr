@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 08b47ea..dcbe3ac 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -489,7 +489,7 @@ else()
+   else()
+     set(ARCH_FLAG "-march=${ARCH}")
+   endif()
+-  set(WARNINGS "-Wall -Wextra -Wpointer-arith -Wundef -Wvla -Wwrite-strings -Wno-error=extra -Wno-error=deprecated-declarations -Wno-unused-parameter -Wno-unused-variable -Wno-error=unused-variable -Wno-error=undef -Wno-error=uninitialized")
++  set(WARNINGS "-Wall -Wextra -Wpointer-arith -Wundef -Wvla -Wwrite-strings -Wno-error=extra -Wno-error=deprecated-declarations -Wno-unused-parameter -Wno-unused-variable -Wno-error=unused-variable -Wno-error=undef -Wno-error=uninitialized -Wno-error=class-memaccess")
+   if(NOT MINGW)
+     set(WARNINGS_AS_ERRORS_FLAG "-Werror")
+   endif()
